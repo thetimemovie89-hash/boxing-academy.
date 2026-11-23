@@ -113,15 +113,67 @@ footer{text-align:center;color:#777;padding:35px 10px;font-size:12px}
 
 <script>
 const exercises=[
-{title:"Скакалка",time:3,desc:"Развитие координации и общей выносливости.",steps:["Подготовь свободное пространство.","Начни с комфортного темпа.","Следи за координацией движений.","Остановись, если почувствуешь дискомфорт."]},
-{title:"Боксёрская стойка",time:2,desc:"Изучение базового положения тела.",steps:["Поставь ноги примерно на ширине плеч.","Одну ногу немного отведи назад.","Слегка согни колени.","Сохраняй равновесие и расслабленные плечи."]},
-{title:"Работа ног",time:3,desc:"Развитие баланса и координации.",steps:["Прими устойчивое положение.","Двигайся небольшими шагами вперёд.","Вернись в исходное положение.","Попробуй перемещаться в стороны."]},
-{title:"Теневой бокс",time:3,desc:"Координация и контроль движений без контакта.",steps:["Освободи пространство вокруг себя.","Работай в комфортном темпе.","Сосредоточься на равновесии и плавности движений.","Не перенапрягай плечи и руки."]},
-{title:"Приседания",time:2,desc:"Укрепление мышц ног.",steps:["Поставь ноги на ширине плеч.","Отводи таз назад.","Сохраняй устойчивое положение.","Возвращайся в исходную позицию."]},
-{title:"Планка",time:1,desc:"Укрепление мышц корпуса.",steps:["Обопрись на предплечья.","Держи корпус ровно.","Не задерживай дыхание.","Заверши упражнение при потере правильного положения."]},
-{title:"Прыжки на месте",time:2,desc:"Развитие общей выносливости.",steps:["Начни с небольшой амплитуды.","Приземляйся мягко.","Сохраняй удобный темп.","Следи за самочувствием."]}
+{
+title: "Боевая стойка",
+time: 3,
+desc: "Научись правильно держать стойку боксёра.",
+steps: [
+"Поставь ноги на ширине плеч.",
+"Одну ногу немного отведи назад.",
+"Подними руки к лицу.",
+"Подбородок опусти вниз."
+],
+video: "https://www.youtube.com/embed/VIDEO_ID"
+},
+{
+title: "Прямой удар (джеб)",
+time: 3,
+desc: "Основной быстрый удар передней рукой.",
+steps: [
+"Прими боевую стойку.",
+"Выпрями переднюю руку.",
+"Поверни кулак правильно.",
+"Верни руку к лицу."
+],
+video: "https://www.youtube.com/embed/VIDEO_ID"
+},
+{
+title: "Кросс",
+time: 3,
+desc: "Прямой удар задней рукой.",
+steps: [
+"Прими боевую стойку.",
+"Разверни корпус и плечо.",
+"Выполни прямой удар.",
+"Вернись в исходную позицию."
+],
+video: "https://www.youtube.com/embed/VIDEO_ID"
+},
+{
+title: "Хук",
+time: 3,
+desc: "Боковой удар.",
+steps: [
+"Прими боевую стойку.",
+"Согни руку.",
+"Поверни корпус.",
+"Вернись в стойку."
+],
+video: "https://www.youtube.com/embed/VIDEO_ID"
+},
+{
+title: "Апперкот",
+time: 3,
+desc: "Удар снизу вверх.",
+steps: [
+"Сохраняй устойчивую стойку.",
+"Немного согни колени.",
+"Выполни движение рукой снизу вверх.",
+"Верни руку к защите."
+],
+video: "https://www.youtube.com/embed/VIDEO_ID"
+}
 ];
-
 let current=null;
 let done=JSON.parse(localStorage.getItem("done")||"[]");
 let totalMinutes=Number(localStorage.getItem("minutes")||0);
@@ -154,8 +206,26 @@ document.getElementById("home").style.display="none";
 document.getElementById("details").style.display="block";
 document.getElementById("detailTitle").textContent=e.title;
 document.getElementById("detailDescription").textContent=e.desc;
-document.getElementById("detailContent").innerHTML=e.steps.map((s,n)=>`
-<div class="exercise"><b>Шаг ${n+1}</b><p>${s}</p></div>`).join("");
+document.getElementById("detailContent").innerHTML=`
+${e.video ? `
+<div class="video-box">
+<h3>🎥 Видеоинструкция</h3>
+<iframe
+src="https://www.youtube-nocookie.com/embed/${e.video}"
+width="100%"
+height="250"
+style="border:0;border-radius:14px"
+allowfullscreen>
+</iframe>
+</div>
+` : ""}
+${e.steps.map((s,n)=>`
+<div class="exercise">
+<b>Шаг ${n+1}</b>
+<p>${s}</p>
+</div>
+`).join("")}
+`;
 }
 function openProgram(){
 document.getElementById("home").style.display="none";
